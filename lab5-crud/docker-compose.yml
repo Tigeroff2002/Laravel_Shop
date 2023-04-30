@@ -12,16 +12,11 @@ services:
             - 1000:80
         volumes:
             - ./:/var/www/html
-        networks:
-            - mynet
     laravel:
-        image: postgres
-        restart: always
+        image: mysql
         environment:
-            POSTGRES_PASSWORD: 1234
-            POSTGRES_DB: laravel
+            MYSQL_DATABASE: apteka
+            MYSQL_ROOT_PASSWORD: root
         ports:
-            - 5433:5432
-networks:
-    mynet:
-        driver: bridge
+            - 3307:3306
+        container_name: myDB

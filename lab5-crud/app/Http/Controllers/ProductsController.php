@@ -36,6 +36,8 @@ class ProductsController extends Controller
           $tmp_img_name = $_FILES['photo']['tmp_name'];
           $path = 'images'.'\\'.$img_name;
 
+          move_uploaded_file($tmp_img_name, $path);
+
           $product = new Product([
                'name' => $request->input('name'),
                'description' => $request->input('description'),
@@ -43,8 +45,6 @@ class ProductsController extends Controller
                'photo' => $path]);
 
 		$product->save();
-
-          move_uploaded_file($tmp_img_name, $path);
 
           return redirect()->route('product.index')->with('success', 'A new product has been succesfully created');
    }
