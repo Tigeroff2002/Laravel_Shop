@@ -5,13 +5,13 @@ services:
         environment:
             - APACHE_RUN_USER=#1000
         build:
-            context: ./docker
+            context: ./apache-image
         depends_on:
             -   laravel
         ports:
             - 1000:80
         volumes:
-            - ./:/var/www/html
+            - ./laravel:/var/www/html
     laravel:
         image: mysql
         environment:
